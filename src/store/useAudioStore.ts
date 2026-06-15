@@ -28,12 +28,14 @@ export interface AnalysisRecord {
 
 interface AppState {
   isRecording: boolean;
+  isDemoMode: boolean;
   currentResult: AnalysisResult | null;
   records: AnalysisRecord[];
   recordingStartTime: number | null;
   volumeHistory: number[];
   speechRateHistory: number[];
   setRecording: (val: boolean) => void;
+  setDemoMode: (val: boolean) => void;
   setCurrentResult: (result: AnalysisResult | null) => void;
   addRecord: (record: AnalysisRecord) => void;
   clearRecords: () => void;
@@ -42,6 +44,7 @@ interface AppState {
 
 export const useAudioStore = create<AppState>((set) => ({
   isRecording: false,
+  isDemoMode: false,
   currentResult: null,
   records: [],
   recordingStartTime: null,
@@ -49,6 +52,8 @@ export const useAudioStore = create<AppState>((set) => ({
   speechRateHistory: [],
 
   setRecording: (val) => set({ isRecording: val }),
+
+  setDemoMode: (val) => set({ isDemoMode: val }),
 
   setCurrentResult: (result) =>
     set((state) => {
